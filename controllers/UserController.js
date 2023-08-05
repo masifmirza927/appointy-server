@@ -54,7 +54,7 @@ const handleLogin = async (req, res) => {
              message: "This email is not registered"
          })
      }
- 
+     
       //STEP 2 now we got the user, now check password is correct
      try {
          const isPassOk = await bcrypt.compare(password, user.password);
@@ -82,6 +82,24 @@ const profileUpdate = async (req, res) => {
     const {email, password} = req.body;
 
 }
+
+// get single user by id
+const getSingleUser = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const user = await UserModel.findById(userId);
+        return res.status(200).json({
+            status: true,
+            user: user
+        });
+    } catch (error) {
+        return res.status(200).json({
+            status: false,
+            error: error.message
+        });
+    }
+}
+
 
 // doctor settings
 const doctorSettingsUpdate = async (req, res) => {
@@ -130,5 +148,6 @@ const doctorSettingsUpdate = async (req, res) => {
 module.exports = {
     handleSignup,
     handleLogin,
-    doctorSettingsUpdate
+    doctorSettingsUpdate,
+    getSingleUser
 }

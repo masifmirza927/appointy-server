@@ -3,11 +3,11 @@ const { Schema } = mongoose;
 
 const AppointmentSchema = new Schema({ 
     patientId: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: [true, "Patient id is required"]
     },
     doctorId: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: [true, "Doctor id is required"]
     },
     bookingDate: {

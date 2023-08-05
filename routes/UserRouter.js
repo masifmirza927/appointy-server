@@ -1,5 +1,5 @@
 const express = require("express");
-const { handleSignup, handleLogin, doctorSettingsUpdate } = require("../controllers/UserController");
+const { handleSignup, handleLogin, doctorSettingsUpdate, getSingleUser } = require("../controllers/UserController");
 const UserRouter = express.Router();
 
 // multer setup
@@ -23,6 +23,8 @@ UserRouter.post("/login", handleLogin);
 
 // doctor settings update
 UserRouter.post("/doctor/settings", doctorSettingsUpdate);
+
+UserRouter.get("/:id",  getSingleUser);
 
 
 module.exports = UserRouter;

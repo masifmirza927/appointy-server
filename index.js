@@ -2,17 +2,18 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 require('dotenv').config();
+const cors = require("cors");
+
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
 
 // Routes imports
 const UserRouter = require("./routes/UserRouter");
 const AppoitmentRoutes = require("./routes/AppointmentRouter");
 
-// models imports
-const UserModel = require("./models/UserModel");
-
-
-// Middlewares
-app.use(express.json());
 
 // Routes
 app.use("/api/user", UserRouter);

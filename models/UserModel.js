@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Please provide valid password"]
+        required: [true, "Please provide valid password"],
     },
     image: {
         type: String
@@ -20,10 +20,12 @@ const UserSchema = new Schema({
     role: {
         type: String,
         default: "patient",
-        required: [true, "role is required"]
+        required: [true, "role is required"],
+        enum: ["patient", "doctor"]
     },
     speciality: {
-        type: String
+        type: String,
+        enum: ["cardiologist", "dentist", "dermatologist", "neurologist", "gynecologist", "pediatrician", "physiatrist", "urologist", "orthopaedic"]
     },
     off_days: {
         type: [String]
@@ -37,6 +39,8 @@ const UserSchema = new Schema({
         default: false
     }
 
-}, { timestamps: true });
+},  { toJSON: { getters: true } }, { timestamps: true });
+
+
 const UserModel = mongoose.model('User', UserSchema);
 module.exports = UserModel
